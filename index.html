@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>-=[ JUNKYARD CHRONICLES ]=-</title>
+    <style>
+        /* Web 1.0 Style Base */
+        body {
+            background: #000000 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" fill="%23222"/><path d="M0 0L64 64M64 0L0 64" stroke="%23333" stroke-width="1"/></svg>');
+            color: #FF9900;
+            font-family: "Comic Sans MS", "Courier New", monospace;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .container {
+            width: 760px;
+            margin: 0 auto;
+            border: 5px solid #663300;
+            background-color: #333333;
+        }
+        
+        /* Table-like layouts */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .nav-cell {
+            width: 150px;
+            background-color: #222222;
+            vertical-align: top;
+            border: 2px ridge #663300;
+        }
+        
+        .content-cell {
+            vertical-align: top;
+            background-color: #222222;
+            border: 2px ridge #663300;
+            padding: 5px;
+        }
+        
+        /* Banner Header */
+        .banner {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23111"/><rect x="0" y="0" width="100" height="100" fill="none" stroke="%23723400" stroke-width="20" stroke-dasharray="10 5" /></svg>');
+            color: #FF6600;
+            text-align: center;
+            padding: 15px;
+            border: 3px ridge #663300;
+        }
+        
+        .banner h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            font-family: "Impact", "Arial Black", sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #000, 4px 4px 0px #333;
+        }
+        
+        .banner p {
+            font-size: 12px;
+            margin: 5px 0 0 0;
+            color: #CCCCCC;
+        }
+        
+        /* Navigation */
+        .nav-box {
+            background-color: #222222;
+            border: 2px ridge #663300;
+            margin: 10px 5px;
+            padding: 5px 0;
+            text-align: center;
+        }
+        
+        .nav-title {
+            background-color: #663300;
+            color: #FFCC00;
+            font-weight: bold;
+            padding: 2px 0;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .nav-links a {
+            display: block;
+            color: #FF9900;
+            text-decoration: none;
+            padding: 2px 0;
+            margin: 2px 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            background-color: #663300;
+            color: #FFFF00;
+        }
+        
+        /* Blink animation for hit counter and banners */
+        @keyframes blink {
+            0% { visibility: visible; }
+            50% { visibility: hidden; }
+            100% { visibility: visible; }
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        /* Marquee Styles */
+        .news-ticker {
+            background-color: #111111;
+            border: 2px solid #663300;
+            padding: 3px;
+            margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        /* Hit Counter */
+        .hit-counter {
+            background-color: #000000;
+            border: 1px solid #663300;
+            color: #00FF00;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            padding: 2px 5px;
+            margin: 5px auto;
+            width: 100px;
+            text-align: center;
+        }
+        
+        /* Under Construction */
+        .under-construction {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #FFFF00;
+        }
+        
+        /* Browser note */
+        .browser-note {
+            font-size: 10px;
+            color: #CCCCCC;
+            margin: 5px 0;
+        }
+        
+        /* Rusty Frames for Posts */
+        .post {
+            margin: 15px 5px;
+            padding: 10px;
+            background-color: #333333;
+            border: 3px ridge #663300;
+            position: relative;
+            text-align: left;
+        }
+        
+        .post-title {
+            background-color: #663300;
+            color: #FFCC00;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 2px ridge #996633;
+        }
+        
+        .post-meta {
+            font-size: 11px;
+            color: #CCCCCC;
+            margin-bottom: 10px;
+        }
+        
+        .post-content {
+            color: #CCCCCC;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: #663300;
+            color: #FFCC00;
+            font-weight: bold;
+            font-size: 11px;
+            margin-top: 10px;
+            padding: 2px 5px;
+            text-decoration: none;
+            border: 2px outset #996633;
+        }
+        
+        .read-more:hover {
+            border-style: inset;
+            background-color: #996633;
+        }
+        
+        /* Broken Console Sidebar */
+        .broken-console {
+            background-color: #111111;
+            border: 3px inset #663300;
+            margin: 10px 5px;
+            padding: 5px;
+            font-family: "Courier New", monospace;
+            color: #00FF00;
+            font-size: 12px;
+            text-align: left;
+        }
+        
+        .console-title {
+            color: #FF0000;
+            border-bottom: 1px solid #663300;
+            padding-bottom: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .console-text {
+            color: #00FF00;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 3px ridge #663300;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 11px;
+            color: #CCCCCC;
+            background-color: #222222;
+        }
+        
+        .webring {
+            margin: 10px 0;
+        }
+        
+        .webring img {
+            border: 0;
+            margin: 0 5px;
+        }
+        
+        /* Guestbook */
+        .guestbook {
+            margin: 10px 0;
+        }
+        
+        .guestbook a {
+            color: #FF9900;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Make it responsive for modern use while still looking Web 1.0 */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                border: none;
+            }
+            
+            .main-table, .main-table tbody, .main-table tr, .main-table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .nav-cell, .content-cell {
+                width: auto;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Banner -->
+        <div class="banner">
+            <h1>-=[ JUNKYARD CHRONICLES ]=-</h1>
+            <p>...Where rusty tales find new life...</p>
+        </div>
+        
+        <!-- News Ticker / Marquee -->
+        <div class="news-ticker">
+            <marquee scrollamount="3" behavior="scroll" direction="left">
+                *** WELCOME TO JUNKYARD CHRONICLES *** LATEST UPDATE: 05/10/25 *** NOW WITH 16,842 VISITORS *** BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 *** UNDER CONSTRUCTION - PARDON OUR DUST ***
+            </marquee>
+        </div>
+        
+        <!-- Main Content Table -->
+        <table class="main-table">
+            <tr>
+                <!-- Left Navigation Column -->
+                <td class="nav-cell">
+                    <!-- Navigation Menu -->
+                    <div class="nav-box">
+                        <div class="nav-title">[ SITE MAP ]</div>
+                        <div class="nav-links">
+                            <a href="#">HOME</a>
+                            <a href="#">ABOUT</a>
+                            <a href="#">GALLERY</a>
+                            <a href="#">STORIES</a>
+                            <a href="#">CONTACT</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories Box -->
+                    <div class="nav-box">
+                        <div class="nav-title">[ CATEGORIES ]</div>
+                        <div class="nav-links">
+                            <a href="#">MECHANICAL</a>
+                            <a href="#">RUST DIARIES</a>
+                            <a href="#">SCRAP TALES</a>
+                            <a href="#">RECLAMATION</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Broken Console Widget -->
+                    <div class="broken-console">
+                        <div class="console-title">SYSTEM ERROR #F7A1</div>
+                        <div class="console-text">
+                            > BOOT SEQUENCE<br>
+                            > LOADING...<br>
+                            > FATAL ERROR<br>
+                            > RETRY? Y/N<br>
+                            <span class="blink">_</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Hit Counter -->
+                    <div class="nav-box">
+                        <div class="nav-title">[ VISITORS ]</div>
+                        <div class="hit-counter">16,842</div>
+                    </div>
+                    
+                    <!-- Search Form -->
+                    <div class="nav-box">
+                        <div class="nav-title">[ SEARCH ]</div>
+                        <form style="padding:5px;">
+                            <input type="text" size="10" style="width:90%; background-color:#111; color:#00FF00; border:1px solid #663300;">
+                            <input type="submit" value="GO!" style="margin-top:3px; background-color:#663300; color:#FFCC00; border:2px outset #996633;">
+                        </form>
+                    </div>
+                </td>
+                
+                <!-- Main Content Cell -->
+                <td class="content-cell">
+                    <!-- Under Construction Banner -->
+                    <div class="under-construction blink">
+                        !!! UNDER CONSTRUCTION !!!
+                    </div>
+                    
+                    <!-- Browser Note -->
+                    <div class="browser-note">
+                        BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 AT 800x600
+                    </div>
+                    
+                    <!-- Post 1 -->
+                    <div class="post">
+                        <div class="post-title">
+                            SALVAGED MEMORIES: FINDING BEAUTY IN DECAY
+                        </div>
+                        <div class="post-meta">
+                            Posted on: 05/10/25 | By: Rusty Writer | Category: Scrap Tales
+                        </div>
+                        <div class="post-content">
+                            The morning sun filtered through the twisted metal, casting long shadows across the forgotten landscape. Twenty years I've been collecting these stories, each one embedded in the rust and grime of abandoned machinery.<br><br>
+                            There's something profound about objects that have outlived their intended purpose. They speak of an era when things were built to last, not to be replaced at the first sign of wear. In the curve of a fender, the tarnished chrome of a bumper, I see the ghosts of industry past.<br><br>
+                            Yesterday's visit to the old Fischer Auto plant revealed treasures I hadn't expected to find...
+                        </div>
+                        <a href="#" class="read-more">READ MORE >>></a>
+                    </div>
+                    
+                    <!-- Post 2 -->
+                    <div class="post">
+                        <div class="post-title">
+                            THE MECHANICAL SYMPHONY OF SILENCE
+                        </div>
+                        <div class="post-meta">
+                            Posted on: 05/05/25 | By: Gear Grinder | Category: Mechanical Musings
+                        </div>
+                        <div class="post-content">
+                            It's the silence that gets you first. Standing amidst rows of dormant machinery, you expect noise—the clank of metal, the hiss of steam, the rhythmic pounding that once signaled productivity. Instead, there's just the occasional creak of settling metal and your own breathing.<br><br>
+                            I've spent three decades documenting abandoned industrial sites before they're lost forever. Each one has its own voice, its own story told through broken gauges and rusted control panels. The old textile mill on Westbrook Road speaks in whispers now, but I can still hear the echoes of its past glory.
+                        </div>
+                        <a href="#" class="read-more">READ MORE >>></a>
+                    </div>
+                    
+                    <!-- Post 3 -->
+                    <div class="post">
+                        <div class="post-title">
+                            RECLAIMED: ART FROM INDUSTRIAL WASTE
+                        </div>
+                        <div class="post-meta">
+                            Posted on: 04/28/25 | By: Metal Sculptor | Category: Creative Reclamation
+                        </div>
+                        <div class="post-content">
+                            The transformation is complete. What was once a discarded transmission housing now forms the torso of a six-foot metal guardian that stands watch over my workshop. Its arms—crafted from exhaust pipes and leaf springs—reach toward the sky in triumphant defiance of entropy.<br><br>
+                            There's poetry in giving new purpose to forgotten things. Each weld marks a decision point, a moment when potential overrides decay. The objects carry their history with them, their scratches and dents becoming character lines in their new incarnation.<br><br>
+                            My latest exhibition opens next Friday at the Foundry Gallery. Twenty-three pieces, each telling a story of resurrection and reimagination...
+                        </div>
+                        <a href="#" class="read-more">READ MORE >>></a>
+                    </div>
+                    
+                    <!-- Web Rings -->
+                    <div class="webring">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='31' viewBox='0 0 88 31'><rect width='88' height='31' fill='%23333'/><text x='44' y='19' font-family='Arial' font-size='10' fill='%23FFCC00' text-anchor='middle'>RUST WEBRING</text></svg>" alt="Rust Webring">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='31' viewBox='0 0 88 31'><rect width='88' height='31' fill='%23333'/><text x='44' y='19' font-family='Arial' font-size='10' fill='%23FFCC00' text-anchor='middle'>JUNK NETWORK</text></svg>" alt="Junk Network">
+                    </div>
+                    
+                    <!-- Guestbook -->
+                    <div class="guestbook">
+                        <a href="https://nolove.neocities.org">LOOK AT THIS!</a> | <a href="https://ko-fi.com/numbpilled">TRASH REGALITY CERTIFIED.</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>THEME CODED BY NUMBPILLED | HIDDENLAYERMEDIA</p>
+            <p>VOIDRANE.NEKOWEB.ORG | CONTACT: NOLOVE@INCEL.EMAIL</p>
+            <p>
+                <a href="#" style="color:#FF9900;">VALIDATE HTML 4.0!</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to randomly show "loading" message for the broken console
+        window.onload = function() {
+            setInterval(function() {
+                const consoleText = document.querySelector('.console-text');
+                if (Math.random() > 0.7) {
+                    const oldText = consoleText.innerHTML;
+                    consoleText.innerHTML = oldText + '> LOADING MODULE...<br>> FAILED<br><span class="blink">_</span>';
+                    setTimeout(function() {
+                        consoleText.innerHTML = '> BOOT SEQUENCE<br>> LOADING...<br>> FATAL ERROR<br>> RETRY? Y/N<br><span class="blink">_</span>';
+                    }, 2000);
+                }
+            }, 8000);
+            
+            // Make post titles blink occasionally
+            const postTitles = document.querySelectorAll('.post-title');
+            setInterval(function() {
+                if (Math.random() > 0.9) {
+                    const randomTitle = postTitles[Math.floor(Math.random() * postTitles.length)];
+                    randomTitle.classList.add('blink');
+                    setTimeout(function() {
+                        randomTitle.classList.remove('blink');
+                    }, 1000);
+                }
+            }, 5000);
+            
+            // Random visitor count increments
+            const hitCounter = document.querySelector('.hit-counter');
+            let visitors = 16842;
+            setInterval(function() {
+                if (Math.random() > 0.7) {
+                    visitors++;
+                    hitCounter.textContent = visitors.toLocaleString();
+                }
+            }, 10000);
+        };
+    </script>
+</body>
+</html>
